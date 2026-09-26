@@ -1,0 +1,16 @@
+// Create each measure separately in Power BI. FactSales is the line-level table.
+Total Sales = SUM(FactSales[Sales])
+Total Profit = SUM(FactSales[Profit])
+Orders = DISTINCTCOUNT(FactSales[Order ID])
+Customers = DISTINCTCOUNT(FactSales[Customer ID])
+Units = SUM(FactSales[Quantity])
+Profit Margin % = DIVIDE([Total Profit], [Total Sales])
+Average Order Value = DIVIDE([Total Sales], [Orders])
+Loss Line % = DIVIDE(SUM(FactSales[Loss Flag]), COUNTROWS(FactSales))
+Sales Previous Year = CALCULATE([Total Sales], SAMEPERIODLASTYEAR(DimDate[Date]))
+Sales YoY % = DIVIDE([Total Sales] - [Sales Previous Year], [Sales Previous Year])
+Repeat Customer % =
+VAR ActiveCustomers = VALUES(FactSales[Customer ID])
+VAR RepeatCount = COUNTROWS(FILTER(ActiveCustomers, CALCULATE(DISTINCTCOUNT(FactSales[Order ID])) > 1))
+RETURN DIVIDE(RepeatCount, COUNTROWS(ActiveCustomers))
+// All measures respect current filters. Repeat share is within the selected period.

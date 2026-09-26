@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "execution": "All code cells executed in fresh in-process IPython sessions per notebook; real stdout and chart outputs saved. TCP kernel execution was unavailable in the build environment. run_all.py provides standard nbclient execution for local Jupyter installations.",
+  "python": "3.12.14",
+  "checks": [
+    "source dataset copied byte-for-byte",
+    "all six notebooks executed without code errors",
+    "required fields, numeric bounds, row identity and dates validated",
+    "SQL sales, profit and order counts match pandas",
+    "Power BI exports preserve line count, sales and profit",
+    "notebook files validated against nbformat schema"
+  ],
+  "limitations": [
+    "Power BI Desktop and DAX were not executed",
+    "source PBIX not audited",
+    "no business outcomes or causal effects established"
+  ],
+  "raw_sha256": "55ed555a1f8c22109e192108248688be8b6a25e48e25c31405a706a4fb3a2872"
+}
